@@ -19,7 +19,7 @@ with open ('E:\\new 1.fasta','r') as input_file:            #打开需要统计�
             chrm_genome = chrm_genome + line                #将新读取的行添加到之前的序列中
 
 print("测序的总长度为："+ str(len(chrm_genome))) 
-print("在new 1.fasta中A的数量是：{0}".format(chrm_genome.count("A")))       #通过format函数来填充字符串
+print("在new 1.fasta中A的数量是：{0}".format(chrm_genome.count("A")))       #通过format函数来填充字符串,输出各个碱基的个数
 print("在new 1.fasta中T的数量是：{0}".format(chrm_genome.count("T")))
 print("在new 1.fasta中G的数量是：{0}".format(chrm_genome.count("G")))
 print("在new 1.fasta中C的数量是：{0}".format(chrm_genome.count("C")))

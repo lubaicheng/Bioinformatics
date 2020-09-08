@@ -2,7 +2,7 @@
 # -*- encoding: utf-8 -*-
 '''
 @文件    :fastq_to_fasta.py
-@说明    :fastq格式转换成fasta
+@说明    :将fastq格式转换成fasta
 @时间    :2020/09/07 20:39:58
 @作者    :陆柏成
 @版本    :1.0
