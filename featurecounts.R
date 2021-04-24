@@ -1,10 +1,10 @@
 
 '''
-@ÎÄ¼ş    :readcount.r
-@ËµÃ÷    :
-@Ê±¼ä    :2021/04/03 16:23:33
-@×÷Õß    :Â½°Ø³É
-@°æ±¾    :1.0
+@æ–‡ä»¶    :readcount.r
+@è¯´æ˜    :
+@æ—¶é—´    :2021/04/03 16:23:33
+@ä½œè€…    :é™†æŸæˆ
+@ç‰ˆæœ¬    :1.0
 @Email   :lu_baicheng@163.com
 '''
 
@@ -16,9 +16,9 @@ library("biomaRt")
 library('curl')
 rm(list = ls())
 options(stringsAsFactors = F)
-setwd("C:\\Users\\Â½°Ø³É\\Desktop\\rna-seq\\Éö¼¯ºÏ¹Ü°©")
+setwd("C:\\Users\\é™†æŸæˆ\\Desktop\\rna-seq\\è‚¾é›†åˆç®¡ç™Œ")
 
-#µ¼Èë¸÷Êı¾İ¼¯
+#å¯¼å…¥å„æ•°æ®é›†
 
 tumor1<-read.table("SRR4448015.txt",header = T)
 colnames(tumor1)[7]<-("tumor1")
@@ -77,7 +77,7 @@ control7<-control7[,-(2:6)]
 
 
 
-#ÕûºÏÊı¾İ±í
+#æ•´åˆæ•°æ®è¡¨
 
 tumor_count<-merge(tumor1,tumor2,by="Geneid")
 tumor_count<-merge(tumor_count,tumor3,by="Geneid")
@@ -94,12 +94,12 @@ control_count<-merge(control_count,control7,by="Geneid")
 
 raw_count <- merge(tumor_count,control_count, by="Geneid")
 
-ENSEMBL <- gsub("\\.\\d*", "", raw_count$Geneid)  #È¥³ıĞ¡Êı£¬Ö»È¡Õû 
+ENSEMBL <- gsub("\\.\\d*", "", raw_count$Geneid)  #å»é™¤å°æ•°ï¼Œåªå–æ•´ 
 
 row.names(raw_count)<- ENSEMBL       
 
 
-#biomartID×ª»»
+#biomartIDè½¬æ¢
 my_mart<- useMart("ENSEMBL_MART_ENSEMBL")
 datasets <- listDatasets(my_mart)
 my_dataset <- useDataset("hsapiens_gene_ensembl",mart =  my_mart)
@@ -108,7 +108,7 @@ options(timeout = 2000000)
 my_symbols<- getBM(attributes = c("ensembl_gene_id","hgnc_symbol"),filters = "ensembl_gene_id",values = my_ensemble_gene_id,mart = my_dataset )
 
 
-#ĞèÒªÈ¥ÍâÃæµÄecxelµÚÒ»ÁĞÊÖ¶¯ÊäÈë¡±ensembl_gene_id¡°£¬ÓÃÀ´ºóĞøÆ¥Åä
+#éœ€è¦å»å¤–é¢çš„ecxelç¬¬ä¸€åˆ—æ‰‹åŠ¨è¾“å…¥â€ensembl_gene_idâ€œï¼Œç”¨æ¥åç»­åŒ¹é…
 readcount<-raw_count[,-1]
 write.csv(readcount, file='readcount.csv')
 readcount<-read.csv("readcount.csv",header = T)
